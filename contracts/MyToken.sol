@@ -8,3 +8,5 @@ contract MyToken is ERC20 {
         _mint(msg.sender, initialSupply * (10 ** decimals()));
     }
 }
+// This contract creates a simple ERC20 token named "AyushCoin" with the symbol "AYC".
+// The constructor mints an initial supply of tokens to the deployer's address.
