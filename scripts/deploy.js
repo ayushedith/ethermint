@@ -1,14 +1,25 @@
-const hre = require("hardhat");
+const { ethers } = require("hardhat");
 
 async function main() {
-  const MyToken = await hre.ethers.getContractFactory("MyToken");
-  const token = await MyToken.deploy(1000000); // 1 million tokens
+  const [deployer] = await ethers.getSigners();
 
-  await token.deployed();
-  console.log(`Token deployed to: ${token.address}`);
+  console.log("Deploying contract with account:", deployer.address);
+
+  const Ethermint = await ethers.getContractFactory("Ethermint");
+
+  // initialSupply is 1,000,000 tokens with 18 decimals
+  const initialSupply = ethers.utils.parseUnits("1000000", 18);
+
+  const ethermint = await Ethermint.deploy(initialSupply);
+
+  await ethermint.deployed();
+
+  console.log("Ethermint deployed to:", ethermint.address);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

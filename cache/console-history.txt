@@ -1,6 +1,0 @@
-(await token.balanceOf(owner)) // SharedArrayBuffer
-     // "AYC"
-(await token.symbol())    
-(await token.name())           // "AyushCoin"
-const t
-const [owner] = await ethers.getSigners();
